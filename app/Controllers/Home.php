@@ -8,10 +8,18 @@ class Home extends BaseController
     {
         return view('senati');
     }
-    
+    /**
+     * El Dashboard requiere 2 partes escenciales, primero requeriere su cabezera y luego el pie
+     * @return string
+     */
     public function dashboard(): string
     {
-        return view('dashboard');
+        $data = [
+            'header'=> view('Partials/header'),
+            'footer'=> view('Partials/footer'),
+        ];
+        return view('dashboard', $data);
     }
+
 
 }
