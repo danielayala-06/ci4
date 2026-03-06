@@ -8,14 +8,10 @@ class Home extends BaseController
     {
         return view('senati');
     }
-
-    public function view_disenio(): string
+    
+    public function dashboard(): string
     {
-        return view('desing');
+        return view('dashboard');
     }
 
-    public function view_ineneria(): string
-    {
-        return view('ingenieria');
-    }
 }

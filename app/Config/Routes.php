@@ -9,6 +9,8 @@ use CodeIgniter\Router\RouteCollection;
 
 //¿Como funciona una ruta?
 //$routes -> verbo('/ruta/', 'Controller::metodo)
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::dashboard');
+$routes->get('/senati', 'Home::index');
+
 $routes->get('/creativo', 'Carrera::showDesign');
 $routes->get('/programador', 'Carrera::showIngenieria');
