@@ -9,6 +9,6 @@ class Producto extends BaseController{
       "header"=> view("Partials/header"),
       "footer"=> view("Partials/footer"),
     ] ;
-    return view("Modulos/Productos", $data);
+    return view("Modulos/productos/index", $data);
   }
 }

@@ -9,6 +9,6 @@ class Proveedor extends BaseController{
       "header"=> view("Partials/header"),
       "footer"=> view("Partials/footer"),
     ] ;
-    return view("Modulos/Proveedores", $data);
+    return view("Modulos/proveedores/index", $data);
   }
 }

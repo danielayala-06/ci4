@@ -16,7 +16,16 @@ $routes->get('/creativo', 'Carrera::showDesign');
 $routes->get('/programador', 'Carrera::showIngenieria');
 
 //Nuevas rutas para navegar desde DASHBOARD
-$routes->get('/clientes', 'Cliente::index');
+/**
+ * Esta seccion es para las rutas de CLIENTES
+ */
+$routes->get('/clientes', 'Cliente::index');//Muestra la tabla con datos
+$routes->get('/clientes/registrar', 'Cliente::create');//Muestra solo el envio del formulario
+$routes->post('/clientes/guardar', 'Cliente::registrarCliente');//Guarda los datos del formulario a la tabla
+
+
+
+
 $routes->get('/proveedores', 'Proveedor::index');
 $routes->get('/productos', 'Producto::index');
 
