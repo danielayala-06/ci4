@@ -1,13 +1,11 @@
 <?= $header ?>
 <div class="row">
     <div class="col-md-12">
-
-        
-        <h5>Registro de nuevos clientes</h5>
-
+        <h5>Actualizar datos de Clientes</h5>
         
         <!-- FORMULARIO... -->
-        <form action="<?= base_url('/clientes/guardar') ?>" method="post" id="form-clientes" autocomplete="off">
+         
+        <form action="<?= base_url('/clientes/actualizar') ?>" method="post" id="form-clientes" autocomplete="off">
             <div class="form-group">
                 <label for="apellidos">Apellidos</label>
                 <input class="form-control" type="text" id="apellidos" name="apellidos" required maxlength="50">
@@ -27,7 +25,7 @@
                 <label for="telefono">Telefono</label>
                 <input class="form-control" type="text" id="telefono" name="telefono" required minlength="9" maxlength="9">
             </div>
-            <button type="submit" class="btn btn-outline-primary">Registrar</button>
+            <button type="submit" class="btn btn-outline-primary">Actualizar</button>
             <button type="reset" class="btn  btn-outline-secondary">Cancelar</button>
 
         </form>

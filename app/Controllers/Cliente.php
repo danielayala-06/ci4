@@ -37,6 +37,23 @@ class Cliente extends BaseController
     return view('Modulos/clientes/registrar', $data);
   }
 
+  /**
+   * Retorna la vista para editar clientes
+   */
+  public function buscar(int $id = null)
+  {
+    $cliente = new ClienteModel();
+    $registro = $cliente->find($id);
+    
+    $data = [
+      'header'  => view("Partials/header"),
+      'footer'  => view("Partials/footer"),
+      'registro'=> $registro
+    ];
+
+    return view('Modulos/clientes/actualizar', $data);
+  }
+
   public function registrarCliente()
   {
     $cliente = new ClienteModel();
@@ -56,5 +73,15 @@ class Cliente extends BaseController
 
       return redirect()->to('/clientes');
 
+  }
+  /**
+   * Eliminar el registro de maner fisica de la trabla
+   */
+  public function eliminar(int $id = null)
+  {
+    $cliente = new ClienteModel();
+    $cliente->delete($id);
+    
+    return redirect()->to('/clientes');
   }
 }
