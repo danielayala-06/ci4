@@ -21,12 +21,13 @@
       <?php foreach($productos as $producto): ?>
         <tr>
           <td><?= $producto['id'] ?></td>
+          <td><?= $producto['tipo'] ?></td>
           <td><?= $producto['descripcion'] ?></td>
           <td><?= $producto['precio'] ?></td>
           <td><?= $producto['stock'] ?></td>
           <td>
-           <button class="btn btn-outline-danger btn-eliminar">Eliminar</button>
-           <button class="btn btn-outline-warning btn-editar">Editar</button>
+            <a class="btn btn-outline-danger btn-eliminar" id="btn-eliminar" data-proveedor-id="<?= $producto['id'] ?>" data-descripcion="<?= $producto['descripcion'] ?>" >Eliminar</a>
+            <a href="<?= base_url('/productos/buscar/') ?><?= $producto['id'] ?>" class="btn btn-outline-warning btn-editar">Editar</a>
           </td>
         </tr>
       <?php endforeach; ?>  

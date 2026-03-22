@@ -42,6 +42,8 @@ $routes->post('/proveedores/actualizar/(:num)', 'Proveedor::actualizarProveedor/
  * RUTAS PARA LOS PRODUCTOS
  */
 $routes->get('/productos', 'Producto::index');
+$routes->get('/productos/registrar', 'Producto::registrar');
+$routes->post('/productos/guardar', 'Producto::registrarProducto');
 
 
 //Rutas de navegacion para los reportes
