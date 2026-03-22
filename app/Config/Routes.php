@@ -23,16 +23,17 @@ $routes->get('/programador', 'Carrera::showIngenieria');
 $routes->get('/clientes', 'Cliente::index');//Muestra la tabla con datos
 $routes->get('/clientes/registrar', 'Cliente::create');//Muestra solo el envio del formulario
 $routes->post('/clientes/guardar', 'Cliente::registrarCliente');//Guarda los datos del formulario a la tabla
-$routes->post('/clientes/eliminar/(:num)', 'Cliente::eliminar/$1');//Guarda los datos del formulario a la tabla
+$routes->get('/clientes/eliminar/(:num)', 'Cliente::eliminar/$1');//Elimina un registro de la tabla
 $routes->get('/clientes/buscar/(:num)', 'Cliente::buscar/$1');// Antes de acutalizar tenemos que buscar
+$routes->post('/clientes/actualizar/(:num)', 'Cliente::actualizarCliente/$1');// Actualiza los datos del formulario
 
 /**
  * RUTAS PARA PROVEEDORES
  */
-
 $routes->get('/proveedores', 'Proveedor::index');
 $routes->get('/proveedores/registrar', 'Proveedor::create');//Muestra solo el envio del formulario
 $routes->post('/proveedores/guardar', 'Proveedor::registrarProveedor');//Guarda los datos del formulario a la tabla
+$routes->get('/proveedores/eliminar/(:num)', 'Proveedor::eliminar/$1');//Elimina un registro de la tabla
 
 
 /**

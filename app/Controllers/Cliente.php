@@ -74,6 +74,38 @@ class Cliente extends BaseController
       return redirect()->to('/clientes');
 
   }
+
+  public function actualizarCliente(int $id = null)
+  {
+    $cliente = new ClienteModel();
+
+    // Se debe validar <antes de insertar los datos
+    $apellidos = $this->request->getPost('apellidos');
+    $nombres = $this->request->getPost('nombres');
+    $dni = $this->request->getPost('dni');
+    $telefono = $this->request->getPost('telefono');
+    
+    if($id == null){
+      echo "ID no encontrado";
+    }
+    if($cliente->find($id) == null){
+      echo "ID no encontrado";
+    }
+    if($nombres == null || $apellidos == null || $dni == null || $telefono == null){
+      echo "Datos incompletos";
+    }
+
+    $cliente->update($id, [
+      'apellidos'=>$apellidos,
+      'nombres'=> $nombres,
+      'dni'=> $dni,
+      'telefono'=> $telefono
+    ]);
+    
+
+    return redirect()->to('/clientes');
+
+  }
   /**
    * Eliminar el registro de maner fisica de la trabla
    */

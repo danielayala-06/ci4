@@ -18,7 +18,7 @@
           <th>Representante</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="content-table">
       <?php foreach($proveedores as $proveedor): ?>
         <tr>
           <td><?= $proveedor['id'] ?></td>
@@ -28,8 +28,8 @@
           <td><?= $proveedor['telefono'] ?></td>
           <td><?= $proveedor['representante'] ?></td>
           <td>
-            <button class="btn btn-danger btn-outline">Eliminar</button>
-            <button class="btn btn-warning">Editar</button>
+            <a class="btn btn-outline-danger btn-eliminar" id="btn-eliminar" data-proveedor-id="<?= $proveedor['id'] ?>" data-razon-social="<?= $proveedor['razon_social'] ?>" >Eliminar</a>
+            <a href="<?= base_url('/proveedores/actualizar/') ?><?= $proveedor['id'] ?>" class="btn btn-outline-warning btn-editar">Editar</a>
           </td>
         </tr>
       <?php endforeach; ?>  
@@ -37,4 +37,26 @@
     </table>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", ()=>{
+    //Referencia
+    const dataTable = document.querySelector("#content-table")
+    
+    //Evento en todo el cuerpo de la tabla
+    dataTable.addEventListener("click", function(event){
+      //Detectar los botones Eliminacion
+      if(event.target.classList.contains('btn-eliminar')){
+        const idProveedor = event.target.getAttribute('data-proveedor-id')
+        const razonSocial = event.target.getAttribute('data-razon-social')
+        console.log("has clikeado btn eliminar del proveedor con id: "+ idProveedor)
+
+        if(!confirm("¿Desea eliminar el registro de "+ razonSocial + "?")) return ;
+        
+        window.location.href = "<?= base_url('proveedores/eliminar/') ?>" + idProveedor
+      }
+
+      
+    })
+  });
+</script>
 <?= $footer ?>

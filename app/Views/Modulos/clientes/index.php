@@ -27,8 +27,8 @@
           <td><?= $cliente['dni'] ?></td>
           <td><?= $cliente['telefono'] ?></td>
           <td>
-            <a href="<?= base_url('/clientes/eliminar/') ?><?= $cliente['id'] ?>" class="btn btn-outline-danger">Eliminar</a>
-            <a href="#" class="btn btn-danger btn eliminar" data-idcliente="<?= $cliente['id'] ?>" data-nombres="<?= $cliente['nombres']?> ">Eliminar</a>
+            <!-- <a href="#" class="btn btn-outline-danger">Eliminar</a> -->
+            <a href="#" class="btn btn-danger btn-eliminar" data-idcliente="<?= $cliente['id'] ?>" data-nombres="<?= $cliente['nombres']?>">Eliminar</a>
             <a href="<?= 
             base_url('clientes/buscar/') ?><?= $cliente['id'] ?>" 
             class="btn btn-outline-warning btn-editar" 
@@ -47,23 +47,28 @@
   document.addEventListener("DOMContentLoaded", ()=>{
     //Referencia
     const dataTable = document.querySelector("#content-table")
-
-    
     
     //Evento en todo el cuerpo de la tabla
     dataTable.addEventListener("click", function(event){
       //Detectar los botones Eliminacion
-      if(event.target.classList.contains("btn-eliminar")){
+      if(event.target.classList.contains('btn-eliminar')){
         const idcliente = event.target.getAttribute('data-idcliente')
         const nombres = event.target.getAttribute('data-nombres')
+        console.log("has clikeado btn eliminar del cliente con id: "+ idcliente)
 
-        if(!confirm("¿Desea eliminar el registro de "+ $nombres)) return ;
+        if(!confirm("¿Desea eliminar el registro de "+ nombres)) return ;
         
         window.location.href = "<?= base_url('clientes/eliminar/') ?>" + idcliente
       }
 
+      //Detectar los botones Edicion
+      if(event.target.classList.contains('btn-editar')){
+        const idcliente = event.target.getAttribute('data-idcliente')
+        console.log("has clikeado btn editar del cliente con id: "+ idcliente)
 
+        window.location.href = "<?= base_url('clientes/buscar/') ?>" + idcliente        
 
+      }
     })
   });
 </script>
