@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class ProudctosModel extends Model
 {
-    protected $table            = 'proudctos';
+    protected $table            = 'productos';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
