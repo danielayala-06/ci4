@@ -29,11 +29,13 @@ $routes->post('/clientes/actualizar/(:num)', 'Cliente::actualizarCliente/$1');//
 
 /**
  * RUTAS PARA PROVEEDORES
- */
+*/
 $routes->get('/proveedores', 'Proveedor::index');
 $routes->get('/proveedores/registrar', 'Proveedor::create');//Muestra solo el envio del formulario
 $routes->post('/proveedores/guardar', 'Proveedor::registrarProveedor');//Guarda los datos del formulario a la tabla
 $routes->get('/proveedores/eliminar/(:num)', 'Proveedor::eliminar/$1');//Elimina un registro de la tabla
+$routes->get('/proveedores/buscar/(:num)', 'Proveedor::buscar/$1');
+$routes->post('/proveedores/actualizar/(:num)', 'Proveedor::actualizarProveedor/$1');// Actualiza los datos del formulario
 
 
 /**

@@ -29,7 +29,7 @@
           <td><?= $proveedor['representante'] ?></td>
           <td>
             <a class="btn btn-outline-danger btn-eliminar" id="btn-eliminar" data-proveedor-id="<?= $proveedor['id'] ?>" data-razon-social="<?= $proveedor['razon_social'] ?>" >Eliminar</a>
-            <a href="<?= base_url('/proveedores/actualizar/') ?><?= $proveedor['id'] ?>" class="btn btn-outline-warning btn-editar">Editar</a>
+            <a href="<?= base_url('/proveedores/buscar/') ?><?= $proveedor['id'] ?>" class="btn btn-outline-warning btn-editar">Editar</a>
           </td>
         </tr>
       <?php endforeach; ?>  
@@ -46,8 +46,12 @@
     dataTable.addEventListener("click", function(event){
       //Detectar los botones Eliminacion
       if(event.target.classList.contains('btn-eliminar')){
-        const idProveedor = event.target.getAttribute('data-proveedor-id')
+        //Data de los proveedores
+        const idProveedor = event.target.getAttribute
+        ('data-proveedor-id')
         const razonSocial = event.target.getAttribute('data-razon-social')
+
+
         console.log("has clikeado btn eliminar del proveedor con id: "+ idProveedor)
 
         if(!confirm("¿Desea eliminar el registro de "+ razonSocial + "?")) return ;
@@ -55,7 +59,14 @@
         window.location.href = "<?= base_url('proveedores/eliminar/') ?>" + idProveedor
       }
 
-      
+      //Detectar los botones Edicion
+      if(event.target.classList.contains('btn-editar')){
+        const idProveedor = event.target.getAttribute('data-idcliente')
+        console.log("has clikeado btn editar del cliente con id: "+ idcliente)
+
+        window.location.href = "<?= base_url('clientes/buscar/') ?>" + idcliente        
+
+      }
     })
   });
 </script>

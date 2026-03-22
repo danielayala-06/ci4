@@ -51,10 +51,46 @@ class Proveedor extends BaseController{
 
       return redirect()->to('/proveedores');
   }
+
+  public function buscar(int $id = null)
+  {
+    $proveedor = new ProveedorModel();
+    $registro = $proveedor->find($id);
+    
+    $data = [
+      'header'  => view("Partials/header"),
+      'footer'  => view("Partials/footer"),
+      'registro'=> $registro
+    ];
+
+    return view('Modulos/proveedores/actualizar', $data);
+  }
+  public function actualizarProveedor(int $id)
+  {
+    $proveedor = new ProveedorModel();
+
+    // Se debe validar antes de insertar los datos
+    $razon_social = $this->request->getPost('razon_social');
+    $direccion = $this->request->getPost('direccion');
+    $ruc = $this->request->getPost('ruc');
+    $telefono = $this->request->getPost('telefono');
+    $representante = $this->request->getPost('representante');
+    
+    $proveedor->update($id, [
+      'razon_social'=>$razon_social,
+      'direccion'=> $direccion,
+      'ruc'=> $ruc,
+      'telefono'=> $telefono,
+      'representante'=> $representante,
+    ]);
+
+      return redirect()->to('/proveedores');
+  }
   public function eliminar($id)
   {
     $proveedor = new ProveedorModel();
     $proveedor->delete($id);
     return redirect()->to('/proveedores');    
   }
+
 }
