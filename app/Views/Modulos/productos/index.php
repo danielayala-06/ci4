@@ -26,7 +26,7 @@
           <td><?= $producto['precio'] ?></td>
           <td><?= $producto['stock'] ?></td>
           <td>
-            <a href="<?= base_url('/productos/eliminar/') ?><?= $producto['id'] ?>" class="btn btn-outline-danger btn-eliminar" id="btn-eliminar" data-proveedor-id="<?= $producto['id'] ?>" data-descripcion="<?= $producto['descripcion'] ?>" >Eliminar</a>
+            <a href="<?= base_url('/productos/eliminar/') ?><?= $producto['id'] ?>" class="btn btn-outline-danger btn-eliminar" id="btn-eliminar" data-producto-id="<?= $producto['id'] ?>" data-descripcion="<?= $producto['descripcion'] ?>" >Eliminar</a>
             <a href="<?= base_url('/productos/buscar/') ?><?= $producto['id'] ?>" class="btn btn-outline-warning btn-editar">Editar</a>
           </td>
         </tr>
@@ -35,4 +35,33 @@
     </table>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", ()=>{
+    //Referencia
+    const dataTable = document.querySelector("#content-table")
+    
+    //Evento en todo el cuerpo de la tabla
+    dataTable.addEventListener("click", function(event){
+      //Detectar los botones Eliminacion
+      if(event.target.classList.contains('btn-eliminar')){
+        const productoId = event.target.getAttribute('data-producto-id')
+        const descripcion = event.target.getAttribute('data-descripcion')
+        console.log("has clikeado btn eliminar del producto con id: "+ productoId)
+
+        if(!confirm("¿Desea eliminar el registro de "+ descripcion)) return ;
+        
+        window.location.href = "<?= base_url('productos/eliminar/') ?>" + productoId
+      }
+
+      //Detectar los botones Edicion
+      if(event.target.classList.contains('btn-editar')){
+        const productoId = event.target.getAttribute('data-producto-id')
+        console.log("has clikeado btn editar del producto con id: "+ productoId)
+
+        window.location.href = "<?= base_url('productos/buscar/') ?>" + productoId        
+
+      }
+    })
+  });
+</script>
 <?= $footer ?>
