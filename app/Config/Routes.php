@@ -40,11 +40,13 @@ $routes->post('/proveedores/actualizar/(:num)', 'Proveedor::actualizarProveedor/
 
 /**
  * RUTAS PARA LOS PRODUCTOS
- */
+*/
 $routes->get('/productos', 'Producto::index');
 $routes->get('/productos/registrar', 'Producto::registrar');
 $routes->post('/productos/guardar', 'Producto::registrarProducto');
-
+$routes->post('/productos/eliminar/(:num)', 'Producto::eliminar/$1');
+$routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1');
+$routes->post('/productos/actualizar/(:num)', 'Producto::actualizarProducto/$1');
 
 //Rutas de navegacion para los reportes
 $routes->get('/reportes/diario', 'Reportes::diario');

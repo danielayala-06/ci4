@@ -26,7 +26,7 @@
           <td><?= $producto['precio'] ?></td>
           <td><?= $producto['stock'] ?></td>
           <td>
-            <a class="btn btn-outline-danger btn-eliminar" id="btn-eliminar" data-proveedor-id="<?= $producto['id'] ?>" data-descripcion="<?= $producto['descripcion'] ?>" >Eliminar</a>
+            <a href="<?= base_url('/productos/eliminar/') ?><?= $producto['id'] ?>" class="btn btn-outline-danger btn-eliminar" id="btn-eliminar" data-proveedor-id="<?= $producto['id'] ?>" data-descripcion="<?= $producto['descripcion'] ?>" >Eliminar</a>
             <a href="<?= base_url('/productos/buscar/') ?><?= $producto['id'] ?>" class="btn btn-outline-warning btn-editar">Editar</a>
           </td>
         </tr>
