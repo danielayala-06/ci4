@@ -14,18 +14,6 @@ class MarcasSeeder extends Seeder
         // Arreglo con los datos semilla
         $data = [
             [
-                'marca' => 'Intel',
-                'created_at' => $now
-            ],
-            [
-                'marca' => 'Ryzen',
-                'created_at' => $now
-            ],
-            [
-                'marca' => 'Bimbo',
-                'created_at' => $now
-            ],
-            [
                 'marca' => 'Toyota',
                 'created_at' => $now
             ],
