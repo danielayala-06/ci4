@@ -54,6 +54,7 @@ $routes->get('/vehiculos', 'Vehiculos::index');
 
 // BD> Modelo> Controlador> Ruta> JS> HTML
 $routes->get('/vehiculos/listar','Vehiculos::getVehiculos');
+$routes->post('/vehiculos/registrar','Vehiculos::registrarVehiculo');
 
 
 
