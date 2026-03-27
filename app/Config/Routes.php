@@ -55,6 +55,14 @@ $routes->get('/vehiculos', 'Vehiculos::index');
 // BD> Modelo> Controlador> Ruta> JS> HTML
 $routes->get('/vehiculos/listar','Vehiculos::getVehiculos');
 
+
+
+
+/**
+ * RUTAS PARA MARCAS
+ */
+$routes->get('/marcas/listar','Marca::getMarcas');
+
 //Rutas de navegacion para los reportes
 $routes->get('/reportes/diario', 'Reportes::diario');
 $routes->get('/diario', 'Reportes::diario');

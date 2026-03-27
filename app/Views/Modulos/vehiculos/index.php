@@ -83,9 +83,30 @@
 <script>
     //Referencias
     const tabla = document.querySelector("#content-vehiculos");
+    const listaMarcas = document.querySelector("#marcas");
 
     // Cuando la pagina carge
     document.addEventListener("DOMContentLoaded", function(){
+        async function obtenerMarcas(){
+            try{
+                const response = await fetch(`<?=base_url('marcas/listar')?>`)
+                const data = await response.json()
+
+                //
+                if(response.status != 200){return;}
+                if(!data){return;}
+
+                data.forEach(marca =>{
+                    const tagOption = document.createElement("option")
+                    tagOption.value = marca.id
+                    tagOption.innerText = marca.marca
+                    listaMarcas.appendChild(tagOption)
+                });
+            }catch(err){
+                console.error(err)
+            }
+        }
+
         // Fetch Vehiculos from endpoint base_url/vehiculos/listar
         async function obtenerVehiculos(){
             try{
@@ -122,6 +143,7 @@
         }
 
         obtenerVehiculos();
+        obtenerMarcas();
     })
 </script>
 
