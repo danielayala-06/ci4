@@ -32,6 +32,7 @@ $routes->post('/clientes/actualizar/(:num)', 'Cliente::actualizarCliente/$1');//
 */
 //$routes->get('/proveedores', 'Proveedor::index');
 $routes->get('/proveedores', 'Proveedor::indexAsync');
+$routes->get('/proveedores/listar', 'Proveedor::getProveedores');//Ruta para obtener los proveedores en formato JSON (Async)
 $routes->get('/proveedores/registrar', 'Proveedor::create');//Muestra solo el envio del formulario
 $routes->post('/proveedores/guardar', 'Proveedor::registrarProveedor');//Guarda los datos del formulario a la tabla
 $routes->get('/proveedores/eliminar/(:num)', 'Proveedor::eliminar/$1');//Elimina un registro de la tabla
