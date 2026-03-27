@@ -20,6 +20,17 @@ class Proveedor extends BaseController{
     return view("Modulos/proveedores/index", $data);
   }  
 
+  // Devuelve el inicio de la pagina Proveedores Async
+  public function indexAsync()
+  {
+    $data = [
+      'header'=> view("Partials/header"),
+      'footer'=> view("Partials/footer"),
+    ] ;
+
+    return view("Modulos/proveedoresAsync/index", $data);
+  }
+
   public function create(): string
   {
     $data = [
