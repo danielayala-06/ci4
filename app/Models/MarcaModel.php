@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class MarcaModel extends Model
+{
+    
+    protected $table = 'marca';
+    protected $primaryKey = 'id';
+    protected $returnType = 'array';
+    protected $allowedFields = ['marca'];
+
+    // Auditoria.>
+    protected $useTimestamps = true;
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+
+}
