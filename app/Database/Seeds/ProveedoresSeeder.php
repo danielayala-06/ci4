@@ -19,14 +19,14 @@ class ProveedoresSeeder extends Seeder
             [
                "razon_social" =>"Textiles S.A.C",
                 "direccion"   =>"Ca. Camino Real 43",
-                "ruc"       =>"2542581365",
+                "ruc"       =>"25425813653",
                 "telefono"  =>"968532568",
                 "representante"  =>"Martinez Pereira, Altamirano Lucho",
             ],
             [
                 "razon_social" =>"Compani A.C.",
                 "direccion"   =>"Av. Toreto #la familia primero",
-                "ruc"       =>"6582356987",
+                "ruc"       =>"65823569873",
                 "telefono"  =>"965326538",
                 "representante"  =>"Fujimori Fujimori, Toledo",
             ]
