@@ -47,6 +47,10 @@ $routes->post('/productos/guardar', 'Producto::registrarProducto');
 $routes->get('/productos/eliminar/(:num)', 'Producto::eliminar/$1');
 $routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1');
 $routes->post('/productos/actualizar/(:num)', 'Producto::actualizarProducto/$1');
+/**
+ * RUTAS PARA LOS VEHICULOS
+ */
+$routes->get('/vehiculos', 'Vehiculos::index');
 
 //Rutas de navegacion para los reportes
 $routes->get('/reportes/diario', 'Reportes::diario');
