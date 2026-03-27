@@ -5,6 +5,30 @@ use App\Controllers\BaseController;
 use App\Models\ProveedorModel;
 
 class Proveedor extends BaseController{
+
+/** ==================
+ ***  ASYNC SECTION ***
+ *==================*/
+
+  public function getProveedores()
+  {
+    $proveedor = new ProveedorModel(); // Cargamos el modelo para acceder a la tabla proveedores
+    
+    $data = $proveedor->findAll(); // Obtenemos todos los registros de la tabla proveedores
+
+    return $this->response->setJSON($data); // Enviamos los proveedores en formato JSON
+  } 
+
+  // Devuelve el inicio de la pagina Proveedores Async
+  public function indexAsync()
+  {
+    $data = [
+      'header'=> view("Partials/header"),
+      'footer'=> view("Partials/footer"),
+    ] ;
+
+    return view("Modulos/proveedoresAsync/index", $data);
+  }
   
   public function index()
   {
@@ -19,18 +43,6 @@ class Proveedor extends BaseController{
 
     return view("Modulos/proveedores/index", $data);
   }  
-
-  // Devuelve el inicio de la pagina Proveedores Async
-  public function indexAsync()
-  {
-    $data = [
-      'header'=> view("Partials/header"),
-      'footer'=> view("Partials/footer"),
-    ] ;
-
-    return view("Modulos/proveedoresAsync/index", $data);
-  }
-
   public function create(): string
   {
     $data = [
@@ -103,5 +115,7 @@ class Proveedor extends BaseController{
     $proveedor->delete($id);
     return redirect()->to('/proveedores');    
   }
+
+
 
 }
