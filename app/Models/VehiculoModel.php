@@ -10,14 +10,13 @@ class VehiculoModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'array';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['id_marca', 'modelo', 'anio', 'color', 'precio'];
+    protected $allowedFields    = ['id_marca', 'modelo', 'anio', 'color', 'precio', 'create_at', 'update_at'];
 
     // Campos de auditoria => ¿Cuando se creo?¿Cuando se modifico?
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at'; // Campo de mi tabla
-    protected $updatedField  = 'updated_at'; // Campo de mi tabla 
-    protected $deletedField  = 'deleted_at';
+    protected $createdField  = 'create_at'; // Campo de mi tabla
+    protected $updatedField  = 'update_at'; // Campo de mi tabla 
 
     //Metodos integrados =>
     // findAll() => Obtener todos los  registros

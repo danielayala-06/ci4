@@ -35,11 +35,10 @@ class Vehiculos extends BaseController
         $vehiculo = new VehiculoModel();
 
         // Todos los campos requeridos, deberan ser enviados en un JSON
-        $data = $this->response->getJSON();
-
-
-
+        $data = $this->request->getJSON();
+        $this->response->setJSON($data);
         // Insertamos los datos en la tabla
+        
         $vehiculo->insert($data);
 
         if($vehiculo->insert($data)){

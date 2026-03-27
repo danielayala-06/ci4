@@ -60,12 +60,12 @@
 
             <div class="form-group">
                 <label for="color">Color:</label>
-                <input type="text" class="form-control" required>
+                <input type="text" class="form-control" required id="color">
             </div>
 
             <div class="form-group">
                 <label for="precio">Precio:</label>
-                <input type="number" required class="text-right form-control" min="1" max="10000000">
+                <input type="number" required class="text-right form-control" min="1" max="10000000" id="precio">
             </div>
         </form>
 
@@ -84,9 +84,63 @@
     //Referencias
     const tabla = document.querySelector("#content-vehiculos");
     const listaMarcas = document.querySelector("#marcas");
+    const formulario = document.querySelector("#formulario-vehiculos");
+    const modal = document.querySelector("#modal-vehiculo");
 
     // Cuando la pagina carge
     document.addEventListener("DOMContentLoaded", function(){
+        function notificar(mensaje = ''){
+            Swal.fire({
+                text:mensaje,
+                icon: 'info',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                toast: true
+            })
+        }
+
+        // Registra un vehiculo
+        async function registrarVehiculos(){
+            try {
+
+                // Objecto que contenga los datos para el registro
+                const vehiculo = {
+                    id_marca: listaMarcas.value,
+                    modelo: document.querySelector("#modelo").value,
+                    anio: document.querySelector("#anio").value,
+                    color: document.querySelector("#color").value,
+                    precio: document.querySelector("#precio").value,
+                }
+                // Se envia la solicitud
+                const response = await fetch(`<?= base_url('vehiculos/registrar')?>`,{
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(vehiculo)
+                })
+
+                const data = await response.json()
+
+                notificar(data.message)
+
+                //no funciono
+                if(!data.success){return;}
+
+                //todo bien..
+
+                // Cerrar modal
+                $('#modal-vehiculos').modal('hide')
+
+                // Recargar tabla
+                obtenerVehiculos()
+
+            } catch (error) {
+                console.error("No se logro registrar", error)
+            }
+        }
+        
+        // Fetch marcas
         async function obtenerMarcas(){
             try{
                 const response = await fetch(`<?=base_url('marcas/listar')?>`)
@@ -142,10 +196,21 @@
             }
         }
 
+
+        //Eventos
+        formulario.addEventListener("submit", function(e){
+            e.preventDefault() // Detiene el envio del formulario
+
+            if(!confirm("¿Registramos este vehiculo?")){return;}
+            registrarVehiculos()
+        })
+
+        // Funcion de autoejecuccion
         obtenerVehiculos();
         obtenerMarcas();
     })
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <?= $footer ?>
