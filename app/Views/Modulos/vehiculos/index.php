@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <!-- Cargara de manera Async -->
-            <tbody>
+            <tbody id="content-vehiculos">
 
             </tbody>
         </table>
@@ -77,6 +77,53 @@
     </div>
   </div>
 </div>
-<!-- Fin del MODEL -->
+<!-- Fin del MODAL -->
+
+<!-- Realizamos el SCRIPT -->
+<script>
+    //Referencias
+    const tabla = document.querySelector("#content-vehiculos");
+
+    // Cuando la pagina carge
+    document.addEventListener("DOMContentLoaded", function(){
+        // Fetch Vehiculos from endpoint base_url/vehiculos/listar
+        async function obtenerVehiculos(){
+            try{
+                const response = await fetch(`<?= base_url('vehiculos/listar')?>`)
+                const data = await response.json()
+                //Si el servidor no respondio correctament
+                if(response.status != 200){return;}
+
+                //Encontramos datos
+                if(!data){return;}
+                tabla.innerHTML = ``
+
+                //Todo Ok procedemos
+                data.forEach(vehiculo => {
+                    tabla.innerHTML += `
+                        <tr>
+                            <td>${vehiculo.id}</td>
+                            <td>${vehiculo.marca}</td>
+                            <td>${vehiculo.modelo}</td>
+                            <td>${vehiculo.anio}</td>
+                            <td>${vehiculo.color}</td>
+                            <td>${vehiculo.precio}</td>
+                            <td>
+                                <a href='#' class='btn btn-sm btn-info'>Editar</a>
+                                <a href='#' class='btn btn-sm btn-danger'>Eliminar</a>
+                            </td>
+                        </tr>
+                    `
+                });
+
+            }catch(err){
+                console.error("Error al obtener los datos: \n",err)
+            }
+        }
+
+        obtenerVehiculos();
+    })
+</script>
+
 
 <?= $footer ?>

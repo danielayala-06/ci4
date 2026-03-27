@@ -29,7 +29,7 @@ class VehiculoModel extends Model
     // Y que sucede si necesito un metodo personalizado? ejemplo: consulta multitabla
     public function obtenerVehiculos()
     {
-        return $this->select('vehiculos.*','marcas.marca')
+        return $this->select("vehiculos.*,marcas.marca")
         ->join('marcas', 'marcas.id = vehiculos.id_marca')
         ->findAll(10);
     }
