@@ -16,9 +16,9 @@ class Proveedor extends BaseController{
     $proveedor = new ProveedorModel();
 
     $data = $this->request->getJSON(); // Obtenemos los datos enviados desde JS
-    
+
     // Insertamos la data obtenida desde el formulario en la tabla proveedores
-    $proveedor->insert($data);
+    //$proveedor->insert($data);
 
     // Realizamos validaciones
     if($proveedor->insert($data)){
@@ -30,7 +30,7 @@ class Proveedor extends BaseController{
     return $this->response->setJSON([
       'success'=> false,
       'message'=> 'Error al registrar el proveedor'
-    ]);
+    ]); 
   }
   public function getProveedores()
   {
