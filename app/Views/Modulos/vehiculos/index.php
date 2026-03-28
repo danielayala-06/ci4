@@ -130,7 +130,7 @@
                 //todo bien..
 
                 // Cerrar modal
-                $('#modal-vehiculos').modal('hide')
+                $('#modal-vehiculo').modal('hide')
 
                 // Recargar tabla
                 obtenerVehiculos()

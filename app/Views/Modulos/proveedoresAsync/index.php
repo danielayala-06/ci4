@@ -71,12 +71,78 @@
     </div>
 
 
+</div>
 
 <script>
     // Referenciamos la tabla donde se mostraran los proveedores
     const tableProveedores = document.querySelector("#table-proveedores");
-    
+    const formulario = document.querySelector("#form-proveedores"); 
+
+
     document.addEventListener('DOMContentLoaded', function() {
+
+         function notificar(mensaje = ''){
+            Swal.fire({
+                text:mensaje,
+                icon: 'info',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                toast: true
+            })
+        }
+
+        //
+        //      FUNCIONES ASYNC
+        //
+
+        /**
+         * @method postProveedor
+         * Este metodo obtiene los datos del formulario y los envia al servidor para registrar un nuevo proveedor. 
+         */
+        async function postProveedor(){
+            try {
+                // Obtenemos los datos del formulario y los convertimos a un objeto JS
+
+                const new_proveedor = {
+                    razon_social: document.querySelector("#razon_social").value,
+                    direccion: document.querySelector("#direccion").value,
+                    ruc: document.querySelector("#ruc").value,
+                    telefono: document.querySelector("#telefono").value,
+                    representante: document.querySelector("#representante").value,
+                }
+                
+                const response = await fetch(`<?= base_url('proveedores/registrar') ?>`, {
+                    method: 'POST',
+                    headers:{'Content-Type': 'application/json'},   
+                    body: JSON.stringify(new_proveedor)
+                });
+                
+                // Obtenemos la respuesta del servidor
+                const data = await response.json();
+
+                notificar(data.message)
+
+                // En caso de no funcionar
+                if(!data.success){return;}
+
+
+                // Ocultamos el modal
+                $('#modalProveedores').modal('hide')
+
+                //Regargamos la tabla
+                fetchProveedores()
+
+            } catch (error) {
+                console.error("Error al registrar el proveedor: ", error);
+            }
+        }
+        
+        /**
+         *  @method fetchProveedores
+         *  @description Esta funcion se encarga de obtener la lista de proveedores desde el servidor y mostrarlos en la tabla de forma ASYNC
+         */
         async function fetchProveedores(){
             try {
                 const response = await fetch(`<?= base_url('/proveedores/listar') ?>`);
@@ -105,9 +171,26 @@
             }
         }
 
+
+        //
+        //      EVENTOS
+        //
+        formulario.addEventListener("submit", function(event){
+            event.preventDefault() //Evitamos el envio del formulario
+
+            if(!confirm("Desea Registrar proveedor?")){return;}
+            postProveedor()
+
+        });
+
+
+        //
+        //      LLAMADAS FUNCIONES 
+        //
         fetchProveedores()
     });
 </script>
 
-</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <?= $footer ?>
