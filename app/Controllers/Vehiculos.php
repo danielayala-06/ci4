@@ -39,7 +39,7 @@ class Vehiculos extends BaseController
         $this->response->setJSON($data);
         // Insertamos los datos en la tabla
         
-        $vehiculo->insert($data);
+        //$vehiculo->insert($data);
 
         if($vehiculo->insert($data)){
             return $this->response->setJSON([
