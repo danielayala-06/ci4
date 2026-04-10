@@ -70,3 +70,9 @@ $routes->get('/diario', 'Reportes::diario');
 $routes->get('/semanal', 'Reportes::semanal');
 $routes->get('/mensual', 'Reportes::mensual');
 $routes->get('/otro', 'Reportes::otro');
+
+
+/**
+ * RUTAS PARA REPORTES
+ */
+$routes->get('/reportes/vehiculos','ReporteController::makeVehiculeReport');
