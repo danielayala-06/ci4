@@ -19,6 +19,14 @@ class Vehiculos extends BaseController
         ];
         return view("Modulos/vehiculos/index", $data);
     }
+    public function uiReportes()
+    {
+        $data = [
+            'header'=> view('Partials/header'),
+            'footer'=> view('Partials/footer')
+        ];
+        return view("Modulos/vehiculos/config-report-vehiculos", $data);
+    }
 
     // El controlador "SERVIRA" resultados asincronos, por lo tanto se requiere:
     //> 1. Codigo de servidores web developers.mozilla.org

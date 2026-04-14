@@ -12,6 +12,36 @@ use function PHPUnit\Framework\throwException;
 
 class ReporteController extends BaseController
 {
+    public function generarReportePrueba(){
+        // No tenemos modelo de donde negociar los datos..
+        $personas = [
+            ['apellidos'=>'Torres','nombres'=>'Carlos', 'telefono'=>'965235635' ,'genero'=>'F','sueldo'=>3500],
+            ['apellidos'=>'Lopez','nombres'=>'Manuel', 'telefono'=>'963852741' ,'genero'=>'F','sueldo'=>2000],
+            ['apellidos'=>'Fujimori','nombres'=>'Diggy', 'telefono'=>'9656358' ,'genero'=>'M','sueldo'=>2200],
+            ['apellidos'=>'Soto','nombres'=>'Felix', 'telefono'=>'985798562' ,'genero'=>'M','sueldo'=>7000],
+            ['apellidos'=>'Vazques','nombres'=>'Adriano', 'telefono'=>'965324852' ,'genero'=>'M','sueldo'=>900]
+        ];
+        $estilos = view('Reports/estilos');// estilos css
+        $logo_senati = base_url('/images/images.jpg'); 
+        $html = view('Reports/prueba', [
+            'personas'=> $personas, 
+            'estilos'=> $estilos,
+            'logo'=> $logo_senati,
+        ]);
+
+        try {
+            $html2pdf = new Html2Pdf('P','A4','es',true,'UTF-8',[20,15,15,15]);
+            $html2pdf->setDefaultFont('Arial');
+            $html2pdf->writeHTML($html);
+            $html2pdf->output('Reporte-prueba.pdf');
+            
+            $this->response->setHeader('Content-Type','application/pdf');
+
+        } catch (Html2PdfException $e) {
+            $html2pdf->clean();
+            throw new \RuntimeException($e->getMessage());
+        }
+    }
     public function makeVehiculeReport()
     {
         //1. Obteniendo los datos

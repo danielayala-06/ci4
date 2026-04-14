@@ -58,6 +58,7 @@ $routes->get('/vehiculos', 'Vehiculos::index');
 // BD> Modelo> Controlador> Ruta> JS> HTML
 $routes->get('/vehiculos/listar','Vehiculos::getVehiculos');
 $routes->post('/vehiculos/registrar','Vehiculos::registrarVehiculo');
+$routes->get('/vehiculos/reporte','Vehiculos::uiReportes');
 
 
 
@@ -79,3 +80,6 @@ $routes->get('/otro', 'Reportes::otro');
  * RUTAS PARA REPORTES
  */
 $routes->get('/reportes/vehiculos','ReporteController::makeVehiculeReport');
+$routes->get('/reportes/prueba','ReporteController::generarReportePrueba');
+
+
